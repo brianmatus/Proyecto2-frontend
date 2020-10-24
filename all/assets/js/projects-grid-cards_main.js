@@ -134,6 +134,28 @@ $("#registerButton").click( function(e) {
   }
 
 
+  var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  var numbers = "0123456789"
+
+
+  //Check if first char is a letter
+  if (!username.charAt(0).match(/[a-zA-Z]/i)) {
+    swal("Username no permitido", "El nombre de usuario debe empezar con una letra", "warning");
+    return
+  }
+
+  //Check if username is only letters and numbers
+  if (!username.match("^[A-Za-z0-9]+$")) {
+    swal("Username no permitido", "El nombre de usuario solo debe de tener letras y numeros", "warning");
+    return
+  }
+
+  //Check for password/repassword match
+  if (password != passwordRepeat) {
+    swal("Contraseñas no coinciden", "No has escrito la misma contraseña en los campos requeridos, revisa que todo este bien", "warning");
+    return
+  }
+
 
 
 
@@ -144,6 +166,30 @@ $("#registerButton").click( function(e) {
   console.log(lastname);
   console.log(password);
   console.log(passwordRepeat);
+
+
+
+
+  let data = {username: username, name: name, lastname:lastname, password: password}
+  fetch(BACK_URL + "register_user/", {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(response => response.json())
+  .then(data => {
+    console.log("ahhh");
+    console.log('Success:', data);
+
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+
+
+
+
+
 });
 
 
@@ -167,7 +213,6 @@ $("#forgotPassword").click(function (e) {
   .catch((error) => {
     console.error('Error:', error);
   });
-
 
 })
 
