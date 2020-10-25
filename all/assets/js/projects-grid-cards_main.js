@@ -40,16 +40,6 @@ $("#loginButton").click( function(e) {
   var username = $("#modalLRInput10").val();
   var password = $("#modalLRInput11").val();
 
-  if (username.length == 0) {
-    swal("Usuario no brindado", "Debes ingresar un usario para iniciar sesion", "warning");
-    return;
-  }
-
-  if (password.length == 0 ) {
-    swal("Contraseña no brindada", "Debes ingresar una contraseña para iniciar sesion", "warning");
-    return;
-  }
-
   let data = {username: username, password: password}
   fetch(BACK_URL + "login/", {
     method: "POST",
@@ -64,6 +54,43 @@ $("#loginButton").click( function(e) {
     console.error('Error:', error);
   });
 });
+
+
+function loginReturn(data, enteredUsername, enteredPassword) {
+
+  console.log(data);
+  console.log(enteredUsername);
+  console.log(enteredPassword);
+
+  switch(data.RETURNCODE) {
+
+    case "-1":
+      swal("Informacion incompleta", "Debes ingresar todos los datos requeridos", "warning");
+      break;
+    case "0":
+      swal("Inicio de sesion exitoso", "Bienvenido," + enteredUsername, "success");
+      $("#modalLRForm").modal("hide");
+      $("#navigationLoginButton").text("Cerrar Sesion")
+      break;
+    case "1":
+      swal("Usuario no encontrado", "No se encontro ningun usuario con username " + enteredUsername, "warning");
+      break;
+    case "2":
+    swal("Contraseña invalida", "La Contraseña ingresada (" + enteredPassword + ") no coincide con la del usuario", "error");
+      break;
+    case "3":
+      swal("Good job!", "You clicked the button!", "success");
+      break;
+    case "4":
+      swal("Good job!", "You clicked the button!", "success");
+      break;
+    default:
+  }
+
+}
+
+
+
 
 
 function updateLoggedUser() {
@@ -88,34 +115,8 @@ function updateLoggedUser() {
   .catch(error => console.log('error', error));
 }
 
-function loginReturn(data, enteredUsername, enteredPassword) {
 
-  console.log(data);
-  console.log(enteredUsername);
-  console.log(enteredPassword);
 
-  switch(data.RETURNCODE) {
-    case "0":
-      swal("Inicio de sesion exitoso", "Bienvenido," + enteredUsername, "success");
-      $("#modalLRForm").modal("hide");
-      $("#navigationLoginButton").text("Cerrar Sesion")
-      break;
-    case "1":
-      swal("Usuario no encontrado", "No se encontro ningun usuario con username " + enteredUsername, "warning");
-      break;
-    case "2":
-    swal("Contraseña invalida", "La Contraseña ingresada (" + enteredPassword + ") no coincide con la del usuario", "error");
-      break;
-    case "3":
-      swal("Good job!", "You clicked the button!", "success");
-      break;
-    case "4":
-      swal("Good job!", "You clicked the button!", "success");
-      break;
-    default:
-  }
-
-}
 
 $("#registerButton").click( function(e) {
 
