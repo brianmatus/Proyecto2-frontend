@@ -8,6 +8,7 @@ var loggedUser
 
 $( document ).ready(function() {
     updateLoggedUser();
+    fillAllRecipes();
 });
 
 
@@ -221,3 +222,41 @@ $("#forgotPassword").click(function (e) {
 $("#alreadyHaveAccount").click(function (e) {
   $('[href="#panel7"]').tab('show');
 });
+
+
+function fillAllRecipes() {
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var raw = JSON.stringify({"title":"*","exactMatch":"false"});
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch(BACK_URL + "search_recipes/", requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      var recetas = data.RESULT
+      for (var receta in recetas) {
+        if (!recetas.hasOwnProperty(receta)) {
+          continue
+        }
+        var data = {
+          title: recetas[receta].title,
+          img: recetas[receta].imagen,
+          abstract: recetas[receta].abstract
+        }
+        agregarRecetaAlHTML(data)
+      }
+    })
+    .catch(error => console.log('error', error));
+}
+
+function agregarRecetaAlHTML(data) {
+  var template = $("#template-receta").html();
+  var html = Mustache.render(template, data);
+  $("#rowDeRecetas").append(html)
+}

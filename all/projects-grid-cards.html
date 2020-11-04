@@ -11,6 +11,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css" />
       <script src="https://kit.fontawesome.com/0b34d7a626.js" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
 
    </head>
 
@@ -139,63 +140,10 @@
          <section class="portfolio-block projects-cards">
             <div class="container">
                <div class="heading">
-                  <h2>Recent Work</h2>
+                  <h2>Recetas Publicadas</h2>
                </div>
-               <div class="row">
-                  <div class="col-md-6 col-lg-4">
-                     <div class="card border-0">
-                        <a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image1.jpg" alt="Card Image" /></a>
-                        <div class="card-body">
-                           <h6><a href="#">Lorem Ipsum</a></h6>
-                           <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                     <div class="card border-0">
-                        <a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image2.jpg" alt="Card Image" /></a>
-                        <div class="card-body">
-                           <h6><a href="#">Lorem Ipsum</a></h6>
-                           <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                     <div class="card border-0">
-                        <a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image3.jpg" alt="Card Image" /></a>
-                        <div class="card-body">
-                           <h6><a href="#">Lorem Ipsum</a></h6>
-                           <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                     <div class="card border-0">
-                        <a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image4.jpg" alt="Card Image" /></a>
-                        <div class="card-body">
-                           <h6><a href="#">Lorem Ipsum</a></h6>
-                           <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                     <div class="card border-0">
-                        <a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image5.jpg" alt="Card Image" /></a>
-                        <div class="card-body">
-                           <h6><a href="#">Lorem Ipsum</a></h6>
-                           <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                     <div class="card border-0">
-                        <a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image6.jpg" alt="Card Image" /></a>
-                        <div class="card-body">
-                           <h6><a href="#">Lorem Ipsum</a></h6>
-                           <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                        </div>
-                     </div>
-                  </div>
+               <div class="row" id="rowDeRecetas">
+                  <!-- Populado dinamicamente -->
                </div>
             </div>
          </section>
@@ -213,5 +161,25 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
       <script src="assets/js/theme.js"></script>
       <script src="assets/js/projects-grid-cards_main.js"></script>
+
+
+
+      <script id="template-receta" type="text/template">
+        <div class="col-md-6 col-lg-4">
+           <div class="card border-0">
+              <a href="#"><img class="card-img-top scale-on-hover" src="{{img}}" alt="Una Receta"></a>
+              <div class="card-body">
+                 <h6><a href="#">{{title}}</a></h6>
+                 <p class="text-muted card-text">{{abstract}}</p>
+              </div>
+           </div>
+        </div>
+      </script>
+
+
+
+
+
+
    </body>
 </html>
