@@ -1,167 +1,180 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+      <title>Projects - CUK inc</title>
+      <meta name="description" content="Empresa de Cocina" />
+      <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700" />
+      <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css" />
+      <script src="https://kit.fontawesome.com/0b34d7a626.js" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
 
-/* Add a gray background color with some padding */
-body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
-}
+   </head>
 
-/* Header/Blog Title */
-.header {
-  padding: 30px;
-  font-size: 40px;
-  text-align: center;
-  background: white;
-}
+   <body>
+      <!--Modal: Login / Register Form-->
+      <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+               <!--Modal cascading tabs-->
+               <div class="modal-c-tabs">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                     <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i> Login</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i> Register</a>
+                     </li>
+                  </ul>
 
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {
-  float: left;
-  width: 75%;
-}
+                  <!-- Tab panels -->
+                  <div class="tab-content">
+                     <!--Panel 7-->
+                     <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+                        <!--Body-->
+                        <div class="modal-body mb-1">
+                           <div class="md-form form-sm mb-5">
+                              <i class="fas fa-user"></i>
+                              <label data-error="wrong" data-success="right" for="modalLRInput10">Tu Usuario</label>
+                              <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" />
+                           </div>
 
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  padding-left: 20px;
-}
+                           <div class="md-form form-sm mb-4">
+                              <i class="fas fa-lock prefix"></i>
+                              <label data-error="wrong" data-success="right" for="modalLRInput11">Tu clave</label>
+                              <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" />
+                           </div>
+                           <div class="text-center mt-2">
+                              <button id="loginButton" class="btn btn-info">Iniciar Sesion <i class="fas fa-sign-in ml-1"></i></button>
+                           </div>
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                           <div class="options text-center text-md-right mt-1">
+                              <p id="forgotPassword">Olvidates tu <a href="#" class="blue-text">contraseña?</a></p>
+                           </div>
+                           <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!--/.Panel 7-->
 
-/* Fake image */
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
-
-/* Add a card effect for articles */
-.card {
-   background-color: white;
-   padding: 20px;
-   margin-top: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Footer */
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-  margin-top: 20px;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {
-    width: 100%;
-    padding: 0;
-  }
-}
-</style>
-</head>
-<body>
-  <a
-      href="javascript:void(
-        window.open(
-          'https://form.jotform.com/202956576841870',
-          'blank',
-          'scrollbars=yes,
-          toolbar=no,
-          width=700,
-          height=500'
-        )
-      )
-    ">
-      Agregar Receta
-    </a>
+                     <!--Panel 8-->
+                     <div class="tab-pane fade" id="panel8" role="tabpanel">
+                        <!--Body-->
+                        <div class="modal-body">
+                           <div class="md-form form-sm mb-5">
+                              <i class="fas fa-user prefix"></i>
+                              <input type="text" id="modalLRInput12" class="form-control form-control-sm validate" />
+                              <label data-error="wrong" data-success="right" for="modalLRInput12">Tu username</label>
+                           </div>
 
 
+                           <div class="md-form form-sm mb-5">
+                              <i class="fas fa-users prefix"></i>
+                              <input type="text" id="modalLRInput13" class="form-control form-control-sm validate" />
+                              <label data-error="wrong" data-success="right" for="modalLRInput13">Tu nombre</label>
+                           </div>
 
-<div class="header">
-  <h2>Proyecto COK</h2>
-</div>
+                           <div class="md-form form-sm mb-5">
+                              <i class="fas fa-users prefix"></i>
+                              <input type="text" id="modalLRInput14" class="form-control form-control-sm validate" />
+                              <label data-error="wrong" data-success="right" for="modalLRInput12">Tu apellido</label>
+                           </div>
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
-  <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-  </div>
-</div>
+                           <div class="md-form form-sm mb-5">
+                              <i class="fas fa-lock prefix"></i>
+                              <input type="password" id="modalLRInput15" class="form-control form-control-sm validate" />
+                              <label data-error="wrong" data-success="right" for="modalLRInput13">Tu contraseña</label>
+                           </div>
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
+                           <div class="md-form form-sm mb-4">
+                              <i class="fas fa-lock prefix"></i>
+                              <input type="password" id="modalLRInput16" class="form-control form-control-sm validate" />
+                              <label data-error="wrong" data-success="right" for="modalLRInput14">Repite tu contraseña</label>
+                           </div>
+
+                           <div class="text-center form-sm mt-2">
+                              <button class="btn btn-info" id ="registerButton">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                           </div>
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                           <div class="options text-right">
+                              <p class="pt-1">Ya tienes una cuenta? <a id="alreadyHaveAccount" href="#" class="blue-text">Iniciar sesion</a></p>
+                           </div>
+                           <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!--/.Panel 8-->
+                  </div>
+               </div>
+            </div>
+            <!--/.Content-->
+         </div>
+      </div>
+      <!--Modal: Login / Register Form-->
+
+      <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+         <div class="container">
+            <a class="navbar-brand logo" href="#">CUK inc</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="nav navbar-nav ml-auto">
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="projects-compact-grid.html">Projects</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link active" href="projects-grid-cards.html">Projects</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="projects-with-sidebar.html">Projects</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="project-page.html">Project Page</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="cv.html">CV</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" id="navigationLoginButton" >Iniciar Sesion</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <main class="page projects-page">
+         <section class="portfolio-block projects-cards">
+            <div class="container">
+               <div class="heading">
+                  <h2>Recetas Publicadas</h2>
+               </div>
+               <div class="row" id="rowDeRecetas">
+                  <!-- Populado dinamicamente -->
+               </div>
+            </div>
+         </section>
+      </main>
+      <footer class="page-footer">
+         <div class="container">
+            <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div>
+            <div class="social-icons">
+               <a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-instagram-outline"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a>
+            </div>
+         </div>
+      </footer>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+      <script src="assets/js/theme.js"></script>
+      <script src="assets/js/index.js"></script>
 
 
 
-
-
-<script type="text/javascript">
-
-  window.onload = function () {
-    console.log("ola k ase");
-
-  }
-
-</script>
-
-</body>
+      <script id="template-receta" type="text/template">
+        <div class="col-md-6 col-lg-4" id="{{uid}}">
+           <div class="card border-0">
+              <a href="#"><img class="card-img-top scale-on-hover" src="{{img}}" alt="Una Receta"></a>
+              <div class="card-body">
+                 <h6><a class="recipeTitle" href="#">{{title}}</a></h6>
+                 <p class="text-muted card-text">{{abstract}}</p>
+                 <button class="botonReceta pitoCuto">Hola</button>
+              </div>
+           </div>
+        </div>
+      </script>
+   </body>
 </html>

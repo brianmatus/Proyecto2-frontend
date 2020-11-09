@@ -5,6 +5,7 @@ if (debug) {
 }
 
 var loggedUser
+var currentRecipes
 
 $( document ).ready(function() {
     updateLoggedUser();
@@ -64,7 +65,6 @@ function loginReturn(data, enteredUsername, enteredPassword) {
   console.log(enteredPassword);
 
   switch(data.RETURNCODE) {
-
     case "-1":
       swal("Informacion incompleta", "Debes ingresar todos los datos requeridos", "warning");
       break;
@@ -88,6 +88,11 @@ function loginReturn(data, enteredUsername, enteredPassword) {
     default:
   }
 
+  console.log(data.USERTYPE);
+  if (data.USERTYPE == "admin") {
+    var audio = new Audio('assets/mp3/soy_admin.mp3');
+    audio.play();
+  }
 }
 
 
@@ -120,7 +125,6 @@ function updateLoggedUser() {
 
 
 $("#registerButton").click( function(e) {
-
   var username = $("#modalLRInput12").val()
   var name = $("#modalLRInput13").val()
   var lastname = $("#modalLRInput14").val()
@@ -134,8 +138,6 @@ $("#registerButton").click( function(e) {
       return;
     }
   }
-
-
   var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   var numbers = "0123456789"
 
@@ -158,20 +160,6 @@ $("#registerButton").click( function(e) {
     return
   }
 
-
-
-
-
-
-  console.log(username);
-  console.log(name);
-  console.log(lastname);
-  console.log(password);
-  console.log(passwordRepeat);
-
-
-
-
   let data = {username: username, name: name, lastname:lastname, password: password}
   fetch(BACK_URL + "register_user/", {
     method: "POST",
@@ -186,19 +174,11 @@ $("#registerButton").click( function(e) {
     console.error('Error:', error);
   });
 
-
-
-
-
-
-
 });
-
 
 $("#forgotPassword").click(function (e) {
 
   var username = prompt('Ingrese el usuario a recuperar');
-
   if (!username || username.length == 0) {
     return
   }
@@ -215,7 +195,6 @@ $("#forgotPassword").click(function (e) {
   .catch((error) => {
     console.error('Error:', error);
   });
-
 })
 
 
@@ -246,17 +225,30 @@ function fillAllRecipes() {
         }
         var data = {
           title: recetas[receta].title,
-          img: recetas[receta].imagen,
-          abstract: recetas[receta].abstract
+          img: recetas[receta].image,
+          abstract: recetas[receta].abstract,
+          uid: recetas[receta].uid
         }
-        agregarRecetaAlHTML(data)
+        addRecipeToHTML(data)
       }
     })
     .catch(error => console.log('error', error));
 }
 
-function agregarRecetaAlHTML(data) {
+function addRecipeToHTML(data) {
   var template = $("#template-receta").html();
   var html = Mustache.render(template, data);
   $("#rowDeRecetas").append(html)
+
+
+
+  $("#rowDeRecetas").children().last().click(function() {
+    var id = $(this).attr("id");
+    console.log("ID CLICKED:" + id);
+    window.location.href = 'individual_recipe.html?uid=' + id;
+  });
+
 }
+
+
+//
