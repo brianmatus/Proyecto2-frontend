@@ -1,4 +1,4 @@
-var debug = true
+var debug = false
 var BACK_URL = 'https://proyecto2-backend.herokuapp.com/'
 if (debug) {
   BACK_URL = "http://127.0.0.1:5000/"
